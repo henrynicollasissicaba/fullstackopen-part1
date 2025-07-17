@@ -1,5 +1,17 @@
 import { useState } from "react";
 
+const Button = (props) => {
+  return <button onClick={props.onClick}>{props.text}</button>;
+};
+
+const StatisticLine = ({ text, value }) => {
+  return (
+    <p>
+      {text} {value}
+    </p>
+  );
+};
+
 const Statistics = (props) => {
   if (props.all === 0) {
     return <div>No feedback given</div>;
@@ -7,12 +19,12 @@ const Statistics = (props) => {
 
   return (
     <div>
-      <p>good {props.good}</p>
-      <p>neutral {props.neutral}</p>
-      <p>bad {props.bad}</p>
-      <p>all {props.all}</p>
-      <p>average {props.average}</p>
-      <p>positive {props.positive}%</p>
+      <StatisticLine text="good" value={props.good} />
+      <StatisticLine text="neutral" value={props.neutral} />
+      <StatisticLine text="bad" value={props.bad} />
+      <StatisticLine text="all" value={props.all} />
+      <StatisticLine text="average" value={props.average} />
+      <StatisticLine text="positive" value={props.positive} />
     </div>
   );
 };
@@ -47,9 +59,9 @@ function App() {
         <h1>Give feedback</h1>
 
         <div>
-          <button onClick={handleGood}>good</button>
-          <button onClick={handleNeutral}>neutral</button>
-          <button onClick={handleBad}>bad</button>
+          <Button onClick={handleGood} text="good" />
+          <Button onClick={handleNeutral} text="neutral" />
+          <Button onClick={handleBad} text="bad" />
         </div>
       </div>
 
